@@ -43,25 +43,25 @@ class Solution:
 
         def dfs(
             graph: list[list[int]], 
-            denotated: list[bool], 
+            detonated: list[bool], 
             i: int, 
             cnt: int
         ):
             for _i in graph[i]:
                 # _i: bombs[_i] can be detonated by bombs[i]
-                if denotated[_i]:
+                if detonated[_i]:
                     # if the bomb was already exploded, skip
                     continue
                 cnt += 1  # cnt: number of bombs the bombs[i] can detonate
-                denotated[_i] = True
-                cnt = dfs(graph, denotated, _i, cnt)
+                detonated[_i] = True
+                cnt = dfs(graph, detonated, _i, cnt)
             return cnt
         
         answer = 0
         for i in range(len(bombs)):
-            denotated = [False] * len(bombs)
-            denotated[i] = True
-            cnt = dfs(graph, denotated, i, 1)
+            detonated = [False] * len(bombs)
+            detonated[i] = True
+            cnt = dfs(graph, detonated, i, 1)
             if answer < cnt:
                 answer = cnt
 
