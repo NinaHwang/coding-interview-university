@@ -17,8 +17,9 @@ class Solution:
         bombs.sort(key=lambda x: x[0])
 
         graph = [[] for _ in range(len(bombs))]
-
-        for i, (x, y, r) in enumerate(bombs):
+        for i, (x, y, r) in enumerate(bombs): 
+            # iterate through bombs and save the indices of the bombs that the bomb can detonates
+            # O(n**2)
             left, right = i-1, i+1
 
             while left >= 0:  
@@ -59,6 +60,7 @@ class Solution:
         
         answer = 0
         for i in range(len(bombs)):
+            # O((n+E) * n) -> dfs time complexity: O(number of vertices + number of edges)
             detonated = [False] * len(bombs)
             detonated[i] = True
             cnt = dfs(graph, detonated, i, 1)
